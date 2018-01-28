@@ -1,0 +1,8 @@
+Merz 15.4s i7 DualCore OSX 16GB
+Huber 31s i7 2.5 GHz QuadCore Win8 6GB
+Ammann 11.8s i7 OctaCore Win10 32GB
+Sommer 15.6s i7 QuadCore 2.5Ghz OSX 16GB
+Born 24s li7 2.5GHz Win7 4GB
+Herzig 18.52 i7 Ubuntu Linux 8GB
+Hess 91.4s i5 Dual Core 2.5GHz Win8 8GB
+Camenzind 18.8s i5 3.1GHz Win10 8GB

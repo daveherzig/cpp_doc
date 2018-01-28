@@ -1,0 +1,443 @@
+\section{Programming with QT}
+
+\frame
+{
+\frametitle{What is QT?}
+\begin{itemize}
+\item Company History: Trolltech (1994-2008), Nokia (2008-2012), Digia (2012-2014), The QT Company (2014-)
+\item QT is a cross-platform application and UI framework
+\item QT provides intuitive C++ class libraries
+\item Current Version: 5.10.0 (7-DEC-2017)
+{\tiny
+\begin{itemize}
+\item 3D Graphics with OpenGL
+\item Multithreading
+\item Network Connectivity
+\item ...
+\end{itemize}
+}
+\item QT provides portability across several platforms\\
+\begin{itemize}
+\item Windows
+\item OSX
+\item Unix/Linux
+\item Android
+\item ...
+\end{itemize}
+\item QT provides development tools (IDE)
+\end{itemize}
+}
+
+\subsection{QT Development Environment}
+\frame
+{
+\frametitle{QT Development Environment}
+Requirements
+\begin{itemize}
+\item MinGW
+\item QT SDK
+\item Editor: Notepad++, emacs, Ultra Edit, Atom, ...
+\end{itemize}
+\vspace{5mm}
+Development Environment
+\begin{itemize}
+\item Console
+\item QT Creator
+\item Visual Studio, Code Blocks, ... (not supported@hf-ict)
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Development with Console}
+\begin{itemize}
+\item Change to the directory containing the source code
+\item Type \emph{qmake -project [CONFIG+=console]}
+\item Type \emph{qmake}
+\item Type \emph{mingw32-make}
+\end{itemize}
+
+Ensure that the correct Environment variables are set (PATH)!\\
+\begin{itemize}
+\item QT bin folder
+\item MINGW bin folder
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Development with QT Creator}
+\begin{itemize}
+\item Start the QT Creator application
+\item File - New - QT 5 Gui Application
+\item Enter project name
+\item Select required modules
+\item Start the application with Build - Run
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Development with QT Creator}
+\includegraphics[width=250pt]{img/qtcreator.png}
+}
+
+\frame
+{
+\frametitle{Resources}
+The complete Documentation, API and Examples can be found at
+\begin{itemize}
+\item https://doc.qt.io
+\end{itemize}
+Books:
+\begin{itemize}
+\item Mastering Qt 5\\
+Guillaume Lazar, Robin Penea\\
+\includegraphics[width=90pt]{img/qt5book.jpg}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{QT - HF-ICT}
+\begin{itemize}
+\item Introduction
+\item Small Projects (QT Basics, Layouts, Slots, ...)
+\item Fractals (QT Painting)
+\item Game (Multithreading)
+\end{itemize}
+}
+
+\subsection{Hello World - Hello QT - Basics}
+\frame
+{
+\frametitle{Hello QT - My first QT program}
+\lstinputlisting{code/qt/helloqt/helloqt.cpp}
+\includegraphics[width=85pt]{img/helloqt.png}
+}
+
+\frame
+{
+\frametitle{Exercise - Hello QT}
+\begin{exercise}
+\begin{itemize}
+\item Setup your QT development environment
+\item Write a \emph{Hello QT} application
+\end{itemize}
+\includegraphics[width=85pt]{img/helloqt.png}
+\end{exercise}
+}
+
+\begin{frame}[fragile]
+\frametitle{QWidget}
+Every gui element (single element or a group of element) in QT is a Widget (Window Gadget).
+\vspace{5mm}
+\includegraphics[width=280pt]{img/widget.png}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercise - QT Standard Widgets}
+\begin{exercise}
+Create the following three QT applications:\\
+\vspace{5mm}
+\\
+\includegraphics[width=75pt]{code/qt/stdwidgets/w1.png}
+\hspace{5mm}
+\includegraphics[width=50pt]{code/qt/stdwidgets/w2.png}
+\hspace{5mm}
+\includegraphics[width=100pt]{code/qt/stdwidgets/w3.png}
+\end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercise - 2 Widgets in one Window}
+\begin{exercise}
+Can you display two widgets in one window?\\
+\vspace{5mm}
+\\
+\includegraphics[width=120pt]{code/qt/stdwidgets/w4.png}
+\end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{QDebug vs cout}
+\begin{itemize}
+\item qDebug()
+\item qInfo()
+\item qWarning()
+\item qCritical()
+\item qFatal()
+\end{itemize}
+
+\begin{lstlisting}
+qDebug() << "some debug output...";
+\end{lstlisting}
+
+Switch off debug output:
+\begin{lstlisting}
+qmake -project DEFINES+=QT_NO_DEBUG_OUTPUT
+\end{lstlisting}
+
+\end{frame}
+
+
+\subsection{Layout Manager}
+\frame
+{
+\frametitle{Layout Manager}
+The following Layout Managers are available in QT:
+\begin{itemize}
+\item QHBoxLayout
+\item QVBoxLayout
+\item QGridLayout
+\item QFormLayout
+\item Null Layout
+\item ...
+\end{itemize}
+}
+
+\begin{frame}[fragile]
+\frametitle{QHBoxLayout (QVBoxLayout)}
+Horizontal arrangement of all widgets.\\
+\includegraphics[width=112pt]{code/qt/hbox/hboxlayout.jpg}\\
+{\tiny
+\lstinputlisting{code/qt/hbox/hbox.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{QHBoxLayout (QVBoxLayout)}
+\includegraphics[width=100pt]{code/qt/stretch/stretch1.png}\\
+\includegraphics[width=150pt]{code/qt/stretch/stretch2.png}\\
+\begin{lstlisting}
+button->sizePolicy().expandingDirections();
+// QFlags()
+input->sizePolicy().expandingDirections();
+// QFlags(0x1)
+// 0x1: Qt::Horizontal
+\end{lstlisting}
+\end{frame}
+
+\frame
+{
+\frametitle{QGridLayout}
+Arrangement of all widgets in a grid.\\
+\includegraphics[width=100pt]{code/qt/grid/gridlayout.jpg}\\
+{\tiny
+\lstinputlisting{code/qt/grid/gridlayout.cpp}
+}
+}
+
+\frame
+{
+\frametitle{QFormLayout}
+The QFormLayout class manages forms of input widgets and their associated labels.\\
+\includegraphics[width=100pt]{img/formlayout.png}\\
+{\tiny
+\lstinputlisting{code/qt/formlayout/mywidget.cpp}
+}
+}
+
+\frame
+{
+\frametitle{Null Layout}
+No layout manager\\
+\includegraphics[width=72pt]{code/qt/null/xylayout.png}\\
+{\tiny
+\lstinputlisting{code/qt/null/mywidget.cpp}
+}
+}
+
+\begin{frame}[fragile]
+\frametitle{Modular Programming}
+\includegraphics[width=140pt]{img/simple.png}
+\hspace{4mm}
+\includegraphics[width=100pt]{img/simplecd.png}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Modular Programming}
+{\tiny
+\lstinputlisting{code/qt/simple/mywidget.h}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Modular Programming}
+{\tiny
+\lstinputlisting{code/qt/simple/mywidget.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Modular Programming}
+	{\tiny
+	\lstinputlisting{code/qt/simple/main.cpp}
+	}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exercise - Modular Programming}
+	\begin{exercise}
+  Implement a gui to validate a credit card number (only the number).\\
+  \includegraphics[width=140pt]{img/creditcard.png}\\
+  The Luhn formula can be used to validate the number. But this will come in
+  a later exercise!
+	\end{exercise}
+\end{frame}
+
+\frame
+{
+	\frametitle{QMainWindow}
+	A main window provides a framework for building an application's user interface.
+	Qt has QMainWindow and its related classes for main window management.
+	QMainWindow has its own layout to which you can add QToolBars, QDockWidgets,
+	a QMenuBar, and a QStatusBar. The layout has a center area that can be occupied
+	by any kind of widget.\\
+	\includegraphics[width=140pt]{img/mainwindowlayout.png}
+
+}
+
+\frame
+{
+	\frametitle{Exercise 2 - MainWindow}
+	Create an application according to the following class diagram and graphical user interface.\\
+	\includegraphics[width=280pt]{img/helloqtcd.png}\\
+	\includegraphics[width=85pt]{img/helloqt.png}
+}
+
+\frame
+{
+	\frametitle{Change Background Color of QLineEdit}
+	\lstinputlisting{code/qt/color.cpp}
+}
+
+\frame
+{
+	\frametitle{Validate Input}
+	There are two ways on how to validate the input values.
+	\begin{itemize}
+	\item Using a validator
+	{\tiny
+	\lstinputlisting{code/qt/validator/method1.cpp}
+	}
+	\item Check the values after commit
+	{\tiny
+	\lstinputlisting{code/qt/validator/method2.cpp}
+	}
+	\end{itemize}
+}
+
+
+\subsection{Event Handling}
+\frame
+{
+	\frametitle{Slots}
+	Every widget may fire events (Signals). These events can be catched be a method
+	called slot.\\
+	Take a look on the API to check which Signal and Slots are available for each
+	widget.\\
+	Example: Signals of the class QPushButton:
+	\begin{itemize}
+	\item clicked(bool checked=false)
+	\item pressed()
+	\item released()
+	\item toggled(bool checked)
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Slots}
+	A class which implements a slot must
+	\begin{itemize}
+	\item be inherited from the class QObject (or a subclass)
+	\item contain the Q\textunderscore OBJECT statement
+	\item contain the public slots section
+	\end{itemize}
+	\lstinputlisting{code/qt/slot.cpp}
+}
+
+\frame
+{
+	\frametitle{Slots}
+	Within the code, the Signal and Slot must be connected.
+	\lstinputlisting{code/qt/connection.cpp}
+	The senderObject fires the event (signal). The receiverObject contains the slot.
+}
+
+\begin{frame}[fragile]
+	\frametitle{My first slot}
+	\includegraphics[width=140pt]{img/simple.png}
+	\hspace{4mm}
+	\includegraphics[width=100pt]{img/simplecd.png}\\
+	\vspace{3mm}
+	Add a simple slot called \verb|onButtonClicked| in the class \verb|MyWidget|.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{My first slot}
+	\verb|mywidget.h|
+	\begin{lstlisting}
+class MyWidget : public QWidget {
+Q_OBJECT
+private:
+  ... // see slide before
+public:
+  ... // see slide before
+public slots:
+  void onButtonClicked();
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{My first slot}
+	\verb|mywidget.cpp|
+	\begin{lstlisting}
+MyWidget::MyWidget() {
+  ... // see slide before
+  QOBject::connect(
+    okButton, SIGNAL(clicked()),
+    this, SLOT(onButtonClicked()));
+}
+
+void MyWidget::onButtonClicked() {
+  // delete the content of the QLineEdit component
+  inputLineEdit->clear();
+}
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exercise 4}
+	Take the code from the example above. Add a new class called \verb|EventHandler|
+	and move the slot \verb|onButtonClicked| from the class \verb|MyWidget| to the
+	class \verb|EventHandler|. The functionality should still be the same.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exercise 4 - Difficulties}
+	The major difficulties in this exercise are:
+	\begin{itemize}
+	\item A new object of the class \verb|EventHandler| must be created and used
+	within the \verb|QObject::connect| statement.
+	\item A way must be found to access the \verb|inputLineEdit| component, which
+	is now in another class than the slot.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\end{frame}
+\subsection{Painting}
+\begin{frame}[fragile]
+\end{frame}
+\subsection{Threads}
+\begin{frame}[fragile]
+\end{frame}
+\subsection{Database Access}
+\begin{frame}[fragile]
+\end{frame}
+\subsection{Network Connections}
+\begin{frame}[fragile]
+\end{frame}

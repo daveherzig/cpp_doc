@@ -1,0 +1,87 @@
+\documentclass[a4paper, gray]{beamer}
+
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+
+\usepackage{xcolor}
+\definecolor{ocre}{RGB}{243,102,25}
+
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{multicol}
+
+%\usepackage{exercise}
+
+\usepackage{graphicx}
+
+\usetheme{default}
+
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{resize to}[a4paper,landscape]
+
+\logo{\pgfimage[width=2cm,height=1cm]{img/hfictlogo}}
+
+\definecolor{lbcolor}{rgb}{0.92,0.92,0.92}
+\definecolor{cmtcolor}{rgb}{0.0,0.5,0.0}
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++,
+        backgroundcolor=\color{lbcolor},
+        commentstyle=\color{cmtcolor}}
+
+\input{def}
+
+\title{Object Oriented Programming with C++}
+\subtitle{OOP - HF-ICT}
+\author{Dave Herzig}
+%\institute{scifortek.com}
+\date{\today}
+
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\setcounter{tocdepth}{2}
+
+\frame
+{
+	\frametitle{Agenda}
+	\small {\tableofcontents}
+}
+
+%\include{basics}
+%\include{memory}
+
+%\include{commandline}
+%\include{oop}
+%\include{inheritance}
+%\include{ruleofthree}
+%\include{ad}
+%\include{datastructures}
+%\include{template}
+%\include{streamoperator}
+%\include{stl}
+%\include{recursion}
+%\include{sorting}
+%\include{searching}
+%\include{tree}
+%\include{graph}
+%\include{stringmatching}
+\include{qt}
+
+%\include{samples}
+
+\end{document}

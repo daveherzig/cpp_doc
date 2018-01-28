@@ -1,0 +1,148 @@
+\subsection{Templates}
+\begin{frame}[fragile]
+\frametitle{Templates}
+Templates are a feature of the C++ language that allows functions and classes to operate
+with generic types. This allows a function of class to work on many different data types
+without being rewritten for each one.
+{\tiny
+\begin{lstlisting}
+int minimum(int a, int b) {
+  if (a < b) return a;
+  return b;
+}
+
+double minimum(double x, double y) {
+  if (x < y) return x;
+  return y;
+}
+
+A minimum(A obj1, A obj2) {
+  // ATTENTION: class A must overload < operator!
+  if (obj1 < obj2) return obj1;
+  return obj2;
+}
+\end{lstlisting}
+}
+The function \verb|minimum| must only be written once if templates are used.
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Function templates}
+{\tiny
+\begin{lstlisting}
+template <class T>
+T minimum(T a, T b) {
+  if (a < b) return a;
+  return b;
+}
+
+int main(int argc, char **argv) {
+  // use function for type integer
+  int a=5, b=6;
+  int c = minimum<int>(a, b);
+
+  // use function for type double
+  double x=3.1, y=5.4;
+  double z = minimum<double>(a, b);
+  
+  // use function for type string
+  string s1 = "Hello";
+  string s2 = "World";
+  string s = minimum<string>(s1, s2);
+
+  return 0;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Function templates}
+{\tiny
+\begin{lstlisting}
+template <class T>
+T minimum(T a, T b) {
+  if (a < b) return a;
+  return b;
+}
+
+class A {
+  // some implementation
+};
+
+int main(int argc, char **argv) {
+  // use function for type A
+  A obj1, obj2;
+  A result = minimum<A>(obj1, obj2);
+  
+  return 0;
+}
+\end{lstlisting}
+}
+This will end up in a compiler error, because class A does
+not overload the \verb|operator <|!
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Function templates}
+{\tiny
+\begin{lstlisting}
+template <class T>
+T min(T a, T b) {
+  if (a < b) return a;
+  return b;
+}
+
+class A {
+  // some implementation
+public:
+  bool operator< (const A & obj);
+};
+
+int main(int argc, char **argv) {
+  // use function for type A
+  A obj1, obj2;
+  A result = min<A>(obj1, obj2);
+  
+  return 0;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Class templates}
+{\tiny
+\begin{lstlisting}
+template <class T>
+class Container {
+private:
+  T value;
+public:
+  T getValue();
+  void setValue(T value);
+};
+
+template <class T>
+T Container<T>::getValue() {
+  return value;
+}
+
+template <class T>
+void Container<T>::setValue(T value) {
+  this->value = value;
+}
+
+int main(int argc, char **argv) {
+  // use class for type double
+  Container<double> obj;
+  double x = 3.1;
+  obj.setValue(x);
+  
+  return 0;
+}
+\end{lstlisting}
+}
+
+\end{frame}
+

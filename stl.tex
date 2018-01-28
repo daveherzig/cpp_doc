@@ -1,0 +1,337 @@
+\section{STL - Standard Template Library}
+
+\begin{frame}[fragile] 
+  \frametitle{STL - Standard Template Library}
+  \begin{itemize}
+  \item Containers\\
+  {\small STL contains sequence containers, associative containers and container adaptors}
+  \item Iterators\\
+  {\small STL contains input iterators, output iterators, forward iterators, bidirectional iterators and random access iterators}
+  \item Algorithms\\
+  {\small STL contains a large number of algorithms (e.g. sorting, searching)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile] 
+  \frametitle{STL - Containers}
+  Sequence Container
+  {\small
+  \begin{itemize}
+  \item vector
+  \item deque
+  \item list
+  \item array (C++11)
+  \end{itemize}
+  Adaptive Containers
+  \begin{itemize}
+  \item stack
+  \item queue
+  \end{itemize}
+  Associative Containers (elements are in order)
+  \begin{itemize}
+  \item map, multimap
+  \item set, multiset
+  \end{itemize}
+  \verb|http://www.cplusplus.com/reference/|
+  }
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Vector, Deque, List}
+{\tiny
+\begin{lstlisting}
+int main(int argc, char **argv) {
+
+  deque<int> c1;
+  vector<int> c2;
+  list<int> c3;
+  
+  // insert at the end
+  c1.push_back(rand());
+  c2.push_back(rand());
+  c3.push_back(rand());
+  
+  // insert at the start
+  c1.push_front(rand());
+  // c2.push_front not possible
+  c3.push_front(rand());
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Vector, Deque, List}
+{\tiny
+\begin{lstlisting}
+  // insert at a specific position
+  list<int>::iterator iter3 = c3.begin();
+  iter3++;
+  c3.insert(iter3, rand());
+  
+  // delete at a specific position
+  vector<int>::iterator iter2 = c2.begin();
+  c2.erase(iter2);
+  
+  // loop through elements
+  deque<int>::iterator iter1;
+  for (iter1=c1.begin(); iter1!=c1.end(); iter1++) {
+    cout << *iter1 << endl;
+  }
+  
+  return 0;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+  \frametitle{Performance Comparison}
+  {\tiny
+  Deque
+  \begin{verbatim}
+Time (push_back, 10 Mio Elements): 0.123527
+Time (insert, 1000 Elements): 11.0062
+Time (erase, 1000 Elements): 10.9873
+  \end{verbatim}
+  Vector
+  \begin{verbatim}
+Time (push_back, 10 Mio Elements): 0.166174
+Time (insert, 1000 Elements): 2.12804
+Time (erase, 1000 Elements): 2.09296
+  \end{verbatim}
+  List
+  \begin{verbatim}
+Time (push_back, 10 Mio Elements): 0.806527
+Time (insert, 1000 Elements): 8.5e-05
+Time (erase, 1000 Elements): 6.7e-05
+  \end{verbatim}
+  }
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Map}
+{\tiny
+\begin{lstlisting}
+map<int, string> employeeMap;
+  
+// insert
+employeeMap[0] = "HERZIG";
+employeeMap[1] = "BALE";
+employeeMap[0] = "WAYNE"; // old value will be overwritten
+  
+pair<map<int, string>::iterator, bool> ret;
+ret = employeeMap.insert(pair<int, string>(2, "PARKER"));
+// ret.second is true
+ret = employeeMap.insert(pair<int, string>(2, "CLARK"));
+// ret.second is false, because key 2 already exists
+  
+// loop through elements
+map<int, string>::iterator iter;
+for (iter=employeeMap.begin(); iter!=employeeMap.end(); iter++) {
+  int key = iter->first;
+  string value = iter->second;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Set}
+{\tiny
+\begin{lstlisting}
+#include <iostream>
+#include <set>
+#include <cstdlib>
+using namespace std;
+
+int main(int argc, char **argv) {
+  set<int> data;
+
+  pair<set<int>::iterator,bool> ret;
+  for (int i=0; i<100; i++) {
+    int number = rand() % 100;
+    ret = data.insert(number);
+    if (!(ret.second)) {
+      cout << "Could not insert " << number << endl;
+    }
+  }
+  cout << data.size() << endl;
+
+  set<int>::iterator it;
+  for (it=data.begin(); it!=data.end(); it++) {
+    cout << *it << endl;
+  }
+
+  return 0;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{STL - Algorihtms}
+The algorithms library defines functions for a variety of purposes (e.g. searching, sorting,
+counting, manipulating) that operate on ranges of elements. Note that a range is defined as
+\verb|[first, last)| where last refers to the element past the last element to inspect or modify. 
+\begin{itemize}
+\item Non-modifying sequence operations
+\item Modifying sequence operations
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{count}
+{\tiny
+Sucht nach einem bestimmten Element in einem
+Container und gibt die Anzahl der Vorkommnisse zurück.
+
+\lstinputlisting{code/stl/count.cpp}
+
+\emph{Ähnliche Algorithmen}: \verb|count_if|
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{all\_of}
+{\tiny
+Prüft ob eine Bedinung für alle Elemente wahr ist.\\
+\emph{ACHTUNG:} Teil von \verb|C++0x|, (\verb|g++ -std=c++0x file.cpp|).
+
+\lstinputlisting{code/stl/allof.cpp}
+
+\emph{Ähnliche Algorithmen}: \verb|any_of, none_of|
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{find}
+{\tiny
+Sucht nach einem Element im Container und gibt den Iterator auf dieses Element zurück.
+Kommt das Element im Container nicht vor, so ist der Rückgabewert gleich \verb|container.end()|.
+
+\lstinputlisting{code/stl/find.cpp}
+
+\emph{Ähnliche Algorithmen}: \verb|find_if, find_if_not, find_end, find_first_of|
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{is\_permutation}
+{\tiny
+Prüft zwei Container ob die gleichen Elemente vorkommen. Egal in welcher Reihenfolge.\\
+\emph{ACHTUNG:} Teil von \verb|C++0x|, (\verb|g++ -std=c++0x file.cpp|).
+
+\lstinputlisting{code/stl/permutation.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{copy}
+{\tiny
+Kopiert die Elemente aus einem Container in einen anderen. Der Ziel Container muss
+dafür entsprechend Platz zur Verfügung stellen.
+
+\lstinputlisting{code/stl/copy.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{move}
+{\tiny
+\emph{ACHTUNG:} Teil von \verb|C++0x|, (\verb|g++ -std=c++0x file.cpp|).
+
+\lstinputlisting{code/stl/move.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{replace}
+{\tiny
+Ein Element durch ein anderes Element ersetzen.
+
+\lstinputlisting{code/stl/replace.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{fill}
+{\tiny
+Fügt allen Elementen eines Containers einen bestimmten Wert zu.
+
+\lstinputlisting{code/stl/fill.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{unique}
+{\tiny
+Entfernt alle aufeinanderfolgenden Duplikate (ausser das erst gefundene) aus einem Container.
+Die Grösse muss nach dem Entfernen manuell angepasst werden. Dazu kann der Rückgabewert
+verwendet werden. Dies ist ein Iterator auf das letzte gültige Element.
+
+\lstinputlisting{code/stl/unique.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{shuffle}
+{\tiny
+Durchmischt die Elemente eines Containers.
+\emph{ACHTUNG:} Teil von \verb|C++0x|, (\verb|g++ -std=c++0x file.cpp|).
+
+\lstinputlisting{code/stl/shuffle.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{min\_element}
+{\tiny
+Sucht nach dem Minimum in einem Container.
+
+\lstinputlisting{code/stl/minelement.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{min, max}
+{\tiny
+Template Funktion um den kleineren resp. grösseren Wert zweier Parameter
+zu bestimmen.
+
+\lstinputlisting{code/stl/min.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{sort}
+{\tiny
+Sortiert alle Elemente in einem Container.
+
+\lstinputlisting{code/stl/sort.cpp}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercise}
+{\tiny
+\begin{exercise}
+Insert 10000 random numbers (0..10000) into a vector. Write a program which counts
+the number of different numbers (e.g. 1, 2, 1, 3, 2: contains 3 elements)
+\end{exercise}
+\begin{exercise}
+Insert 10000 random numbers (0..10000) into a vector. Remove all even numbers.
+\end{exercise}
+\begin{exercise}
+Insert 100 numbers (in order: 0,1,2,...) into a vector. Shuffle that vector.
+\end{exercise}
+\begin{exercise}
+Insert 500 random numbers (0..1000) into a vector v1 and into a vector v2. Print
+out all numbers which are only in v1 and v2.
+\end{exercise}
+}
+\end{frame}
+
+
+
+

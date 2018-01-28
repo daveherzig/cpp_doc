@@ -1,0 +1,56 @@
+\begin{frame}[fragile]
+\frametitle{Overload Stream Operator}
+Print an object off your own class on the console:
+
+{\tiny
+\begin{lstlisting}
+class A {
+private:
+  int n;
+  int m;
+public:
+  // some code
+}
+
+int main(int argc, char **argv) {
+  A obj;
+  cout << obj << endl;
+  return 0;
+}
+\end{lstlisting}
+}
+This will end up in a compiler error, as the compiler does not know what should be
+written to the cout stream.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Overload Stream Operator}
+Overload the \verb|operator<<| function and define this function as friend
+within your class to access private attributes.
+
+{\tiny
+\begin{lstlisting}
+class A {
+private:
+  int n;
+  int m;
+public:
+  // some code
+  friend std::ostream& operator <<(std::ostream& stream, const A& obj);
+}
+
+std::ostream& operator <<(std::ostream& stream, const A& obj) {
+  // do something
+  stream << obj.x;
+}
+
+int main(int argc, char **argv) {
+  A obj;
+  cout << obj << endl;
+  return 0;
+}
+\end{lstlisting}
+}
+\end{frame}
+
+

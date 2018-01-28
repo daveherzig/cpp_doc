@@ -1,0 +1,140 @@
+\subsection{Inheritance}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance}
+{\small
+Classes in C++ can be extended, creating new classes which retain characteristics of the base class.
+This process, known as inheritance, involves a base class and a derived class: The derived class
+inherits the members of the base class, on top of which it can add its own members.
+\begin{lstlisting}
+class A { // Base class
+};
+
+class B : public A { // Derived class
+};
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Constructor}
+{\tiny
+\lstinputlisting{code/inheritance/constructor.cpp}
+Output:\\
+\verb|Constructor A|\\
+\verb|Constructor B|\\
+The base constructor will be executed {\bf\emph{before}} the constructor of the derived class.
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Constructor}
+If nothing specific is defined, the contructor with no arguments will be taken
+from the super class.
+{\tiny
+\lstinputlisting{code/inheritance/constructor2.cpp}
+Output:\\
+\verb|Constructor A|\\
+\verb|Constructor B with arg|\\
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Constructor}
+A compiler error will occure, if a constructor with no arguments
+is not available.
+{\tiny
+\lstinputlisting{code/inheritance/constructor3.cpp}
+\bf{Compiler Error}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Constructor}
+The constructor of the sub class needs to define which constructor of the
+super class should be used.
+{\tiny
+\lstinputlisting{code/inheritance/constructor4.cpp}
+Output:\\
+\verb|Constructor A with arg|\\
+\verb|Constructor B with arg|\\
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Destructor}
+{\tiny
+\lstinputlisting{code/inheritance/destructor.cpp}
+Output:\\
+\verb|Destructor B|\\
+\verb|Destructor A|\\
+The base destructor will be executed {\bf\emph{after}} the destructor of the derived class.
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Protected}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Polymorphism}
+{\tiny
+One of the key features of class inheritance is that a pointer to a derived class is type-compatible
+with a pointer to its base class. Polymorphism is the art of taking advantage of this simple but
+powerful feature.
+\lstinputlisting{code/inheritance/polymorphism1.cpp}
+Output:\\
+\verb|Method class A|\\
+This output is NOT CORRECT!. As the pointer points to an object of class B,
+the method of class B should be executed!. To avoid this failure, the method
+in the base class must be declared as \verb|virtual|.
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Polymorphism}
+{\tiny
+\lstinputlisting{code/inheritance/polymorphism2.cpp}
+Output:\\
+\verb|Method class B|\\
+This output is CORRECT!. A method declared as \verb|virtual| will be checked at runtime,
+to find out the correct class on which the method should be executed.
+Therefore a non-virtual declared method should not be overwritten.
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Polymorphism}
+{\tiny
+\lstinputlisting{code/inheritance/polymorphism3.cpp}
+Output:\\
+\verb|Destructor class A|\\
+This output is NOT CORRECT!. As the object is from class B, the destructor
+of class B should also be called. To avoid this failure, the destructor in
+the base class must be declared as \verb|virtual|. 
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Polymorphism}
+{\tiny
+\lstinputlisting{code/inheritance/polymorphism4.cpp}
+Output:\\
+\verb|Destructor class B|\\
+\verb|Destructor class A|\\
+This output is CORRECT!. Therefore a class should never be inherited if there is
+a non-virtual destructor.
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inheritance - Abstract class}
+{\tiny
+Abstract base classes can only be used as base classes, and thus are allowed to have virtual member functions
+without definition (known as pure virtual functions).
+\lstinputlisting{code/inheritance/abstract.cpp}
+It is not possible to create an object of an abstract base class. If a derived class does not
+override all pure virtual methods, the derived class is also abstract (without pure virtual
+methods).
+}
+\end{frame}
