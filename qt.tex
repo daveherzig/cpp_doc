@@ -277,16 +277,6 @@ No layout manager\\
 	}
 \end{frame}
 
-\begin{frame}[fragile]
-	\frametitle{Exercise - Modular Programming}
-	\begin{exercise}
-  Implement a gui to validate a credit card number (only the number).\\
-  \includegraphics[width=140pt]{img/creditcard.png}\\
-  The Luhn formula can be used to validate the number. But this will come in
-  a later exercise!
-	\end{exercise}
-\end{frame}
-
 \frame
 {
 	\frametitle{QMainWindow}
@@ -297,14 +287,6 @@ No layout manager\\
 	by any kind of widget.\\
 	\includegraphics[width=140pt]{img/mainwindowlayout.png}
 
-}
-
-\frame
-{
-	\frametitle{Exercise 2 - MainWindow}
-	Create an application according to the following class diagram and graphical user interface.\\
-	\includegraphics[width=280pt]{img/helloqtcd.png}\\
-	\includegraphics[width=85pt]{img/helloqt.png}
 }
 
 \frame
@@ -378,7 +360,6 @@ No layout manager\\
 
 \begin{frame}[fragile]
 	\frametitle{My first slot}
-	\verb|mywidget.h|
 	\begin{lstlisting}
 class MyWidget : public QWidget {
 Q_OBJECT
@@ -393,7 +374,6 @@ public slots:
 
 \begin{frame}[fragile]
 	\frametitle{My first slot}
-	\verb|mywidget.cpp|
 	\begin{lstlisting}
 MyWidget::MyWidget() {
   ... // see slide before
@@ -410,14 +390,14 @@ void MyWidget::onButtonClicked() {
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Exercise 4}
+	\frametitle{Exercise - Event Handling}
 	Take the code from the example above. Add a new class called \verb|EventHandler|
 	and move the slot \verb|onButtonClicked| from the class \verb|MyWidget| to the
 	class \verb|EventHandler|. The functionality should still be the same.
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Exercise 4 - Difficulties}
+	\frametitle{Exercise - Event Handling}
 	The major difficulties in this exercise are:
 	\begin{itemize}
 	\item A new object of the class \verb|EventHandler| must be created and used
@@ -428,16 +408,145 @@ void MyWidget::onButtonClicked() {
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Signals}
+Every widget may fire events (Signals). A signal will be implemented
+in the following way:
+
+{\small
+\begin{lstlisting}
+class MyClass : public QObject {
+public:
+  MyClass();
+  ...
+  void someMethod();
+signals:
+  void somethingHappens();
+};
+\end{lstlisting}
+}
+A signal method has no implementation. The signal itself can be
+triggered by calling the method:
+
+{\small
+\begin{lstlisting}
+void MyClass::someMethod() {
+   emit somethingHappens();
+}
+\end{lstlisting}
+}
+
 \end{frame}
+
+\subsection{Dialogs}
+\begin{frame}[fragile]
+\frametitle{Dialogs}
+In a graphical user interface, a dialog is a window used to enable communication between
+a computer and the user. It may communicate information to the user, prompt the user for
+a response, or both. A dialog can be displayed in modal mode.\\
+\vspace{3mm}
+\includegraphics[width=160pt]{img/dialog1.png} 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dialogs}
+The class QMessageBox could be used fo standard dialogs:
+\vspace{3mm}
+\includegraphics[width=200pt]{img/messagebox.png}
+{\tiny
+\begin{lstlisting}
+int result = QMessageBox::warning( // warning, critical, ...
+  this, // parent
+  "TITLE",
+  "TEXT",
+  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel
+);
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dialogs}
+If a custom dialog is needed, create a class inherited from QDialog.
+A dialog is created like a QWidget (actually it is a QWidget) with
+some additional important dialog functionality.
+\begin{itemize}
+\item Modal - Calling window is disabled and the dialog is always in foreground.
+\item Result - A dialog normally provides a result value.
+(e.g. Ok, Cancel Button Clicked)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exercise - Modular Programming}
+	\begin{exercise}
+  Implement a gui to validate a credit card number (only the number).\\
+  \includegraphics[width=140pt]{img/creditcard.png}\\
+  The Luhn formula can be used to validate the number.
+	\end{exercise}
+\end{frame}
+
+
 \subsection{Painting}
 \begin{frame}[fragile]
+\frametitle{Painting}
+To paint something on a QT Widget, the method paintEvent must be overwritten:
+\lstinputlisting{code/qt/paint/paint.cpp}
 \end{frame}
-\subsection{Threads}
+
 \begin{frame}[fragile]
+\frametitle{Painting}
+The QPainter objects supports many method to draw specific geometric figures:
+	(e.g. Arc, Line, Point)\\
+	\vspace{3mm}
+        \includegraphics[width=190pt]{img/painter.png}
 \end{frame}
-\subsection{Database Access}
+
 \begin{frame}[fragile]
+\frametitle{Exercise - Moiree}
+Create an application which draws the following picture:
+\includegraphics[width=190pt]{img/moiree.png}
 \end{frame}
-\subsection{Network Connections}
+
 \begin{frame}[fragile]
+\frametitle{Exercise - Sierpinski}
+Draw on a widget with the following algorithm:
+{\small
+\begin{enumerate}
+\item Create 3 random points A, B and C. Preferably the 3 points should
+be a triangle stretched over the widget.
+\item Define a point (x,y) which is equal to point A.
+\item Define randomly a point A, B or C. This point is called Z.
+\item Calculate the middlepoint ($x_m$ and $y_m$) between Z and (x, y).
+\item Draw a point at position $x_m$ and $y_m$.
+\item Set $x=x_m$ and $y=y_m$.
+\item o to step 3
+\end{enumerate}
+}
+Draw about 100000 points. In addition colors could also be used at step 3. In case of point A (green), B (blue) and C (red).
 \end{frame}
+
+\subsection{Mouse Events}
+\begin{frame}[fragile]
+\frametitle{Mouse Events}
+Mouse move and and mouse click events can be tracked on a widget by
+overwritting one (or both) of the following methods:
+
+\begin{itemize}
+\item \verb|mouseMoveEvent(QMouseEvent *event)|\\
+Do not forget to switch on mouse tracking (\verb|setMouseTracking(true)|) to handle these events.
+\item \verb|mousePressEvent(QMouseEvent *event)|
+\item \verb|mouseDoubleClickEvent(QMouseEvent *event)|
+\item \verb|mouseReleaseEvent(QMouseEvent *event)|
+\end{itemize}
+
+\end{frame}
+
+%\subsection{Threads}
+%\begin{frame}[fragile]
+%\end{frame}
+%\subsection{Database Access}
+%\begin{frame}[fragile]
+%\end{frame}
+%\subsection{Network Connections}
+%\begin{frame}[fragile]
+%\end{frame}
