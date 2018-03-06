@@ -1,0 +1,12 @@
+*.log
+*.aux
+*.nav
+*.out
+*.snm
+*.gz
+*.toc
+*.exe
+*.o
+*.pdf
+*.vrb
+
