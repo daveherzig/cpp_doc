@@ -541,9 +541,94 @@ Do not forget to switch on mouse tracking (\verb|setMouseTracking(true)|) to han
 
 \end{frame}
 
-%\subsection{Threads}
-%\begin{frame}[fragile]
-%\end{frame}
+\subsection{Threads}
+\begin{frame}[fragile]
+\frametitle{Threads}
+A Thread in QT may be implemented in the following way:
+{\tiny
+\begin{lstlisting}
+class MyThread : public QThread {
+public:
+  void run();
+};
+
+void MyThread::run() {
+  // code which will be executed in the thread
+}
+
+// creating a thread
+MyThread *mt = new MyThread();
+// starting a thread
+mt.start();
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Threads}
+Endless Thread with the possibility to stop.
+{\tiny
+\begin{lstlisting}
+class MyThread : public QThread {
+private:
+  bool running;
+public:
+  MyThread();
+  void stopThread();
+  void run();
+};
+
+MyThread::MyThread() : running(true) {}
+
+void MyThread::stopThread() {
+  running = false;
+}
+
+void MyThread::run() {
+  while(running) {
+  // code which will be executed in the thread
+  msleep(50);
+  }
+}
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Threads}
+Thread Synchronization - Producer Consumer\\
+{\tiny
+The Producer-Consumer problem describes two processes, the producer and the consumer, who share a data container. The producer's job is to generate data. The consumer's job is to consume (and remove) the data. The problem is to make sure that the producer won't try to add data into the container if it's full and that the consumer won't try to consume data from an empty container.
+}
+\includegraphics[width=190pt]{img/prodcon.png}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Threads}
+Thread Synchronization - Producer Consumer\\
+QT provides several classes for thread synchronization:
+\begin{itemize}
+\item QMutex
+\item QSemaphore
+\item QMutexLocker
+\item QWaitConditon
+\item QReadWriteLock
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Threads}
+Thread Synchronization - Producer Consumer\\
+{\tiny
+\lstinputlisting{code/qt/thread/prodcon.cpp}
+}
+
+\end{frame}
+
+
+
 %\subsection{Database Access}
 %\begin{frame}[fragile]
 %\end{frame}
