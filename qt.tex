@@ -671,6 +671,24 @@ Game Objects
 
 \begin{frame}[fragile]
 \frametitle{QT Game}
+Shoot - Projectile motion\\
+\includegraphics[width=100pt]{img/pro_motion.png}
+
+{\small
+\begin{lstlisting}
+const double g = 9.81;
+double rad = 3.1415926 / 180 * angle;
+int dx = speed/3 * cos(rad) * t;
+int dy = speed/3 * sin(rad) * t - (g/2) * pow(t,2);
+t = t+0.1;
+x = x + dx/2;
+y = y - dy/2;
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{QT Game}
 Thread
 \begin{itemize}
 \item Thread
