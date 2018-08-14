@@ -32,9 +32,9 @@ using namespace std;
 int main(int argc, char **argv) {
   clock_t start, stop;
   start = clock();
-  
+
   // CODE FRAGMENT
-  
+
   stop = clock();
   // Time in seconds
   double time = (double)(stop-start)/CLOCKS_PER_SEC;
@@ -50,14 +50,18 @@ int main(int argc, char **argv) {
 Measure the time needed for the following code fragment on your computer.
 \begin{lstlisting}
 int main(int argc, char **argv) {
-  int n;
-  for (int i=0; i<100000; i++) {
-    for (int j=0; j<i; j++) {
-      if (j != 0) {
-        // useless mathematical operation
-        n += i % j;
-      }
+  string s = // some random string containing [A-Z]
+  int result[26];
+  for (int i=0; i<26; i++) {
+    int counter = 0;
+    char ch = 'A' + i;
+    for (int j=0; j<s.size(); j++) {
+      if (s.at(j) == ch) counter++;
     }
+    result[i] = counter;
+  }
+  for (int i=0; i<26; i++) {
+    cout << ((char)('A'+i)) << " : " << result[i] << endl;
   }
   return 0;
 }
@@ -88,7 +92,7 @@ Ammann & 11.8s & i7 OctaCore & Win10 & 32GB\\
 Sommer & 15.6s & i7 QuadCore 2.5GHz & OSX & 16GB\\
 Born & 24s & i7 2.5GHz & Win7 & 4GB\\
 Hess & 91s & i5 Dual Core 2.5GHz &  Win8 & 8GB\\
-Camenzind & 19s & i5 3.1GHz & Win10 & 8GB	
+Camenzind & 19s & i5 3.1GHz & Win10 & 8GB
 \end{tabular}
 \end{frame}
 
@@ -123,6 +127,23 @@ Large input size\\
 \begin{frame}[fragile]
 \frametitle{Runtime Analysis}
 \begin{example}
+The following code computes the product of a and b. What is the runtime?
+\begin{lstlisting}
+int product(int a, int b) {
+  int sum = 0;
+  for (int i=0; i<b; i++) {
+    sum += a;
+  }
+  return sum;
+}
+\end{lstlisting}
+\end{example}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Runtime Analysis}
+\begin{example}
 What is the runtime of \verb|method(n)|?
 \begin{lstlisting}
 void method(int n) {
@@ -137,18 +158,46 @@ void method(int n) {
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Runtime Analysis}
+\frametitle{DNA Analysis}
+{\tiny
 \begin{exercise}
-Write a class \verb|RandomDataUtil| with a method\\
-\verb|string createString(int size)| which creates a string, containing
-random letters A-Z.\\
+Write an algorithm to find out which nucleotide appears most in the DNA
+sequence of the human (chromosome 1).\\
+\includegraphics[scale=0.3]{img/dna.jpg}
+\begin{enumerate}
+\item Download the template \verb|sequence.cpp|, located on the HF-ICT share
+\item Compile the code on your computer
+\item Download the Human DNA Chromosome 1 sequence (fasta format) from
+\verb|ftp://ftp.ncbi.nlm.nih.gov/genomes/|
+\item Use the class FastaReader to read the sequence file
+\item Find out the length of the sequence
+\item Implement the method \verb|analyzeSequence| to find out which nucleotide
+appears most.
+\item Your algorihtm must run in less than 10s.
+\end{enumerate}
+
+\end{exercise}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Random Data}
+\begin{exercise}
+Write a class \verb|RandomDataUtil| with two methods
+\begin{enumerate}
+\item \verb|string createString(int size)| which creates a string, containing
+random letters A-Z.
+\item \verb|string createGenome(int size)| which creates a string, containing
+random letters A, G, C and T.
+\end{enumerate}
 What is the runtime of your solution?
 \end{exercise}
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Runtime Analysis}
+\frametitle{Character Frequency}
 \begin{exercise}
 Write a method, which takes a string (contains A-Z) as parameter. This method
 should return the first character, which appears only one time
@@ -157,5 +206,3 @@ What is the runtime of your solution?
 \end{exercise}
 
 \end{frame}
-
-

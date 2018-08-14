@@ -1,6 +1,6 @@
 \section{STL - Standard Template Library}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
   \frametitle{STL - Standard Template Library}
   \begin{itemize}
   \item Containers\\
@@ -12,7 +12,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
   \frametitle{STL - Containers}
   Sequence Container
   {\small
@@ -36,7 +36,7 @@
   }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
 \frametitle{Vector, Deque, List}
 {\tiny
 \begin{lstlisting}
@@ -45,12 +45,12 @@ int main(int argc, char **argv) {
   deque<int> c1;
   vector<int> c2;
   list<int> c3;
-  
+
   // insert at the end
   c1.push_back(rand());
   c2.push_back(rand());
   c3.push_back(rand());
-  
+
   // insert at the start
   c1.push_front(rand());
   // c2.push_front not possible
@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
 \frametitle{Vector, Deque, List}
 {\tiny
 \begin{lstlisting}
@@ -67,24 +67,24 @@ int main(int argc, char **argv) {
   list<int>::iterator iter3 = c3.begin();
   iter3++;
   c3.insert(iter3, rand());
-  
+
   // delete at a specific position
   vector<int>::iterator iter2 = c2.begin();
   c2.erase(iter2);
-  
+
   // loop through elements
   deque<int>::iterator iter1;
   for (iter1=c1.begin(); iter1!=c1.end(); iter1++) {
     cout << *iter1 << endl;
   }
-  
+
   return 0;
 }
 \end{lstlisting}
 }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
   \frametitle{Performance Comparison}
   {\tiny
   Deque
@@ -108,23 +108,23 @@ Time (erase, 1000 Elements): 6.7e-05
   }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
 \frametitle{Map}
 {\tiny
 \begin{lstlisting}
 map<int, string> employeeMap;
-  
+
 // insert
 employeeMap[0] = "HERZIG";
 employeeMap[1] = "BALE";
 employeeMap[0] = "WAYNE"; // old value will be overwritten
-  
+
 pair<map<int, string>::iterator, bool> ret;
 ret = employeeMap.insert(pair<int, string>(2, "PARKER"));
 // ret.second is true
 ret = employeeMap.insert(pair<int, string>(2, "CLARK"));
 // ret.second is false, because key 2 already exists
-  
+
 // loop through elements
 map<int, string>::iterator iter;
 for (iter=employeeMap.begin(); iter!=employeeMap.end(); iter++) {
@@ -135,44 +135,35 @@ for (iter=employeeMap.begin(); iter!=employeeMap.end(); iter++) {
 }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
 \frametitle{Set}
 {\tiny
 \begin{lstlisting}
-#include <iostream>
-#include <set>
-#include <cstdlib>
-using namespace std;
+set<int> data;
 
-int main(int argc, char **argv) {
-  set<int> data;
-
-  pair<set<int>::iterator,bool> ret;
-  for (int i=0; i<100; i++) {
-    int number = rand() % 100;
-    ret = data.insert(number);
-    if (!(ret.second)) {
-      cout << "Could not insert " << number << endl;
-    }
+pair<set<int>::iterator,bool> ret;
+for (int i=0; i<100; i++) {
+  int number = rand() % 100;
+  ret = data.insert(number);
+  if (!(ret.second)) {
+    cout << "Could not insert " << number << endl;
   }
-  cout << data.size() << endl;
+}
+cout << data.size() << endl;
 
-  set<int>::iterator it;
-  for (it=data.begin(); it!=data.end(); it++) {
-    cout << *it << endl;
-  }
-
-  return 0;
+set<int>::iterator it;
+for (it=data.begin(); it!=data.end(); it++) {
+  cout << *it << endl;
 }
 \end{lstlisting}
 }
 \end{frame}
 
-\begin{frame}[fragile] 
+\begin{frame}[fragile]
 \frametitle{STL - Algorihtms}
 The algorithms library defines functions for a variety of purposes (e.g. searching, sorting,
 counting, manipulating) that operate on ranges of elements. Note that a range is defined as
-\verb|[first, last)| where last refers to the element past the last element to inspect or modify. 
+\verb|[first, last)| where last refers to the element past the last element to inspect or modify.
 \begin{itemize}
 \item Non-modifying sequence operations
 \item Modifying sequence operations
@@ -331,7 +322,3 @@ out all numbers which are only in v1 and v2.
 \end{exercise}
 }
 \end{frame}
-
-
-
-
