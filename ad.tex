@@ -50,18 +50,18 @@ int main(int argc, char **argv) {
 Measure the time needed for the following code fragment on your computer.
 \begin{lstlisting}
 int main(int argc, char **argv) {
-  string s = // some random string containing [A-Z]
-  int result[26];
-  for (int i=0; i<26; i++) {
-    int counter = 0;
-    char ch = 'A' + i;
-    for (int j=0; j<s.size(); j++) {
-      if (s.at(j) == ch) counter++;
-    }
-    result[i] = counter;
+  const int N = 60000;
+  int *values = new int[N];
+  int *result = new int[N];
+  for (int i=0; i<N; i++) {
+    values[i] = rand() % 10;
   }
-  for (int i=0; i<26; i++) {
-    cout << ((char)('A'+i)) << " : " << result[i] << endl;
+  for (int i=0; i<N; i++) {
+    int sum = 0;
+    for (int j=i; j<N; j++) {
+      sum += values[j];
+    }
+    result[i] = sum;
   }
   return 0;
 }
@@ -161,19 +161,19 @@ void method(int n) {
 \frametitle{DNA Analysis}
 {\tiny
 \begin{exercise}
-Write an algorithm to find out which nucleotide appears most in the DNA
+Write an algorithm to find out which nucleotide (base) appears most in the DNA
 sequence of the human (chromosome 1).\\
 \includegraphics[scale=0.3]{img/dna.jpg}
 \begin{enumerate}
 \item Download the template \verb|sequence.cpp|, located on the HF-ICT share
 \item Compile the code on your computer
+\item Use the class FastaReader to read the sequence file \verb|sample.fa|
+\item Print the length of the sequence
+\item Implement the method \verb|analyzeSequence| to find out which nucleotide (base)
+appears most.
 \item Download the Human DNA Chromosome 1 sequence (fasta format) from
 \verb|ftp://ftp.ncbi.nlm.nih.gov/genomes/|
-\item Use the class FastaReader to read the sequence file
-\item Find out the length of the sequence
-\item Implement the method \verb|analyzeSequence| to find out which nucleotide
-appears most.
-\item Your algorihtm must run in less than 10s.
+\item Use your algorithm on the human sequence.
 \end{enumerate}
 
 \end{exercise}
