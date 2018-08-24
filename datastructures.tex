@@ -11,6 +11,57 @@ Use an array if
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Array C++}
+{\small
+\begin{lstlisting}
+int sArray[10];
+int *dArray = new int[10];
+
+for (int i=0; i<10; i++) {
+  sArray[i] = i;
+  dArray[i] = i;
+}
+
+// range based for loop C++ 2011 (only sArray)
+for (int value : sArray) {
+  cout << value << endl;
+}
+
+cout << "First Element at: " << sArray << endl;
+cout << "Last Element at: " << &sArray[9] << endl;
+\end{lstlisting}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Array C++}
+
+\begin{exercise}
+What is the value of N?
+\begin{lstlisting}
+int N = ?;
+double values[N];
+cout << values << endl;
+cout << &values[N-1] << endl;
+\end{lstlisting}
+
+0x7ffe01a9abb0\\
+0x7ffe01a9ad20
+\end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Array Runtime}
+\begin{tabular}{lll}
+ & Standard Array & vector\\
+Insert & & \\
+Delete & & \\
+Access & & \\
+\end{tabular}
+\end{frame}
+
+
 \subsection{Linked List}
 \begin{frame}[fragile]
 \frametitle{Linked List}
