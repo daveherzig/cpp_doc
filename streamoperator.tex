@@ -42,6 +42,7 @@ public:
 std::ostream& operator <<(std::ostream& stream, const A& obj) {
   // do something
   stream << obj.x;
+  return stream;
 }
 
 int main(int argc, char **argv) {

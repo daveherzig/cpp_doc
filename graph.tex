@@ -73,7 +73,7 @@ Node 9	0(2), 1(18), 2(12), 7(8),
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Breath First Search}
+\frametitle{Breadth First Search}
 Breadth-first search (BFS) is an algorithm for traversing a graph data structure. It starts at the tree root and explores the neighbor nodes first, before moving to the next level neighbours.\\
 \vspace{3mm}
 \includegraphics[scale=0.5]{img/graph2.png}\\
@@ -109,10 +109,11 @@ The algorithm contains the following steps:
 \item Repeat for all not marked nodes:
 \begin{itemize}
 \item Search the node X with minimum distance
-\item Caclulate the distance from X to all the neighbours\\
+\item Caclulate the distance from X to all the not marked neighbours\\
 Total Cost = CurrentCost at Node X + Weight to the neighbour
 \item Check the current table entries. Update the table, if
 the distance to a neighbour is smaller.
+\item Mark node X
 \end{itemize}
 \end{enumerate}
 }
