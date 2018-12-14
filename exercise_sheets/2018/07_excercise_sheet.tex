@@ -1,0 +1,123 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage[dvips]{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\usepackage{color}
+\usepackage{listings}
+\definecolor{lbcolor}{rgb}{0.92,0.92,0.92}
+\definecolor{cmtcolor}{rgb}{0.0,0.5,0.0}
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++,
+        commentstyle=\color{cmtcolor}}
+
+\setlength{\parindent}{0cm}
+
+\title{Latex Template}
+\author{Patrik S"utterlin}
+\date{WS2013}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+CH 4132 Muttenz\\
+P.S"utterlin
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 7
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{Knacknuss (Kombinatorik)}
+
+L"osen Sie folgendes mathematisches Problem: \textbf{MATHE + IST + MEIN = LEBEN} \\
+
+Jeder Buchstabe in der Gleichung representiert eine der gelisteten Variablen: \\ \{A, B, E, H, I, L, M, N, S, T\} \\
+Den einzelnen Variabeln sollen folgende Ganzzahlen zugewiesen werden: \\ \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\} \\
+
+Die Reihenfolge der Zuweisung ist beliebig. Jede Ziffer muss in der Kombination genau einmal vorkommen. \\
+
+Beispiel: A=9, B=8, E=1, H=2, I=3, L=4, M=5, N=6, S=7, T=0 \\
+
+Setzt man diese Kombination nun in die Gleichung ein, so ergibt dies: \\ $\Rightarrow$ \textbf{59021 + 370 + 5136 = 41816} \\ 
+$\Rightarrow$ \textbf{64527 = 41816} \\ 
+
+Schreiben Sie ein Programm welches s"amtliche m"oglichen korrekten L"osungen zu diesem Problem auf den Bildschirm ausgibt:
+
+{ \small
+\lstinputlisting{code/07_01_main.cpp}
+}
+
+\section{Rucksackproblem}
+
+Gegeben sind mehrere Lebensmittel mit einem bestimmten N"ahrwert. \\
+
+Es soll nun eine Auswahl an Lebensmitteln getroffen werden, die in einen Rucksack mit einer vorgegebenen Gewichtsschranke eingepackt werden k"onnen. \\
+
+Der N"ahrwert s"amtlicher eingepackter Lebensmittel soll maximiert werden so dass der Rucksacktr"ager sich m"oglichst lange von den Lebensmitteln ern"ahren kann. \\
+
+Beispiel:
+
+\begin{itemize}
+	\item 12 kg Sellerie $\Rightarrow$ N"ahrwert = 4
+	\item 4  kg Bonbons $\Rightarrow$ N"ahrwert = 10
+	\item 2  kg Kn"ackebrot $\Rightarrow$ N"ahrwert = 2
+	\item 1  kg "Apfel $\Rightarrow$ N"ahrwert = 2
+	\item 1  kg Karotten $\Rightarrow$ N"ahrwert = 1
+\end{itemize}
+
+Bei einer zul"assigen Maximallast von 15kg im Rucksack m"ussten Sie einpacken: \textbf{Bonbons, Kn"ackebrot, "Apfel, Karotten} (Gesamtn"ahrwert = 15 / Tragelast = 8kg). \\
+
+Schreiben Sie ein Programm welches einen Vektor mit der optimalen Packliste der Lebensmittel zur"uckgibt: 
+
+{ \small
+\lstinputlisting{code/07_02_main.cpp}
+}
+
+\section{Pr"ufung: Graph ist ein/kein Baum}
+
+Schreiben Sie ein Funktion in der Klasse GraphUtil welche ''true'' zur"uckliefert, falls ein ungerichteter Graph ein Baum darstellt - ansonsten geben Sie ''false'' zur"uck:
+
+{ \small
+\lstinputlisting{code/07_03_main.cpp}
+}
+
+\textbf{Hinweis:} Im Gegensatz zum bin"aren Baum darf dieser Baum pro Parent Element null bis \textit{n} Child Elemente besitzen.
+
+\section{Maximales Produkt Sub-Array Problem}
+
+Suchen Sie in einem Array (vector$<$int$>$) jeweils das zusammenh"angende Sub-Array welches das gr"osst m"ogliche errechenbare Produkt (d.h. die Multiplikation s"amtlicher enthaltenen Elementwerte) aufweist. Geben Sie das gr"osst m"ogliche Produkt zur"uck.\\
+
+\textbf{Beispiel:} \{-2, -3, 0, -2, -40\} \\
+
+Das enthaltene Sub-Array mit dem gr"ossten Produkt w"are \{-2, -40\}. \\ Der R"uckgabewert der Methode w"are somit 80. \\
+
+Schreiben Sie das passende Programm f"ur diese Aufgabe:
+
+{ \small
+\lstinputlisting{code/07_04_main.cpp}
+}
+
+
+\end{document}
+
