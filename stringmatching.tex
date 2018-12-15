@@ -18,15 +18,26 @@
   Move the character one position to the right in case of a mismatch!\\
   \vspace{3mm}
   {\small
-  \verb|T: GCTTCTGCTACCTTTTGCGCGCGCGCGGAA|\\
-  \verb|P: CCTTTTGC|\\
-  \verb|    CCTTTTGC|\\
-  \verb|     CCTTTTGC|\\
-  \verb|      CCTTTTGC|\\
-  \verb|       CCTTTTGC|\\
+  \verb|T: HERE IS A SIMPLE EXAMPLE|\\
+  \verb|P: EXAMPLE|\\
+  \verb|    EXAMPLE|\\
+  \verb|     EXAMPLE|\\
+  \verb|      EXAMPLE|\\
+  \verb|       EXAMPLE|\\
   \verb|        ...|\\
-  \verb|             CCTTTTGC|\\
+  \verb|                    EXAMPLE|\\
   }
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Naive - Exercise}
+\begin{exercise}
+Implement the Naive algorithm.
+\begin{lstlisting}
+int Naive::bm(
+  const string & text, const string & pattern)
+\end{lstlisting}
+\end{exercise}
 \end{frame}
 
 \begin{frame}[fragile] 
@@ -57,15 +68,42 @@
 
 \begin{frame}[fragile] 
 \frametitle{Boyer Moore - Example}
-\verb|T: er sagte abrakadabra aber|\\
-\verb|P: aber|\\
-\verb|       aber|\\
-\verb|        aber|\\
-\verb|            aber|\\
-\verb|               aber|\\
-\verb|                   aber|\\
-\verb|                      aber|\\
-\verb|                        aber|
+\verb|T: HERE IS A SIMPLE EXAMPLE|\\
+\verb|P: EXAMPLE|\\
+\verb|          EXAMPLE|\\
+\verb|            EXAMPLE|\\
+\verb|               EXAMPLE|\\
+\verb|                    EXAMPLE|
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Boyer Moore}
+The shift offset will be precalculated. In case of a mismatch there is a table to
+look up the shift offset.\\
+
+\begin{tabular}{l|l}
+A & 5\\
+B & 7 (Pattern length)\\
+C & 7\\
+...& ...\\
+X & 6\\
+Y & 7\\
+Z & 7
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile] 
+\frametitle{Boyer Moore - Exercise}
+\begin{exercise}
+Implement the Boyer Moore algorithm.
+\begin{lstlisting}
+int StringUtil::bm(
+  const string & text, const string & pattern)
+\end{lstlisting}
+\end{exercise}
+\begin{exercise}
+Create a meaningful testcase and compare the performance between the naive and Boyer Moore algorithm. 
+\end{exercise}
 \end{frame}
 
 \begin{frame}[fragile]
