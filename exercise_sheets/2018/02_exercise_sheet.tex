@@ -1,0 +1,110 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[dvips]{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\setlength{\parindent}{0cm}
+
+\title{Aufgabe 2 Programmieren HF-ICT}
+\author{David Herzig}
+\date{August 2015}
+
+% some listings configurations:
+
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++}
+%
+
+\renewcommand{\arraystretch}{2.0}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+Programmieren 3. Semester, Algorithmen und Datenstrukturen\\
+David Herzig
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 2
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{Aktienkurse}
+In dieser Aufgabe soll eine Methode implementiert werden, welche als Parameter einen Array enth"alt. Dieser
+Array beinhaltet die Aktienpreise eines bestimmten Unternehmen f"ur einen Tag. Der Arrayindex ist dabei
+die Minute seit Start (B"orse "offnet um 09:00 und schliesst um 17:30).
+
+\vspace{3mm}
+
+Beispiele:\\
+\verb|stockprices[0] = 100 // Wert der Aktie um 09:00|\\
+\verb|stockprices[1] = 101 // Wert der Aktie um 09:01|\\
+\verb|stockprices[10] = 89 // Wert der Aktie um 09:10|\\
+\verb|stockprices[70] = 75 // Wert der Aktie um 10:10|\\
+\verb|stockprices[440] = 110 // Wert der Aktie um 16:20|
+
+\vspace{3mm}
+
+Finden Sie den maximalem Gewinn der an diesem Tag erzielt werden konnte.\\
+{\bf ACHTUNG}: \verb|"|shorting\verb|"| (Verkauf bevor Kauf) ist nicht erlaubt. Ebenso ist es nicht erlaubt
+die Aktien zum gleichen Zeitpunkt zu kaufen und zu verkaufen.
+Es kann durchaus m"oglich sein, dass der Gewinn negativ ist.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class Trader {
+public:
+  static int calculateMaxProfit(const int *values, const int ARRAY_SIZE);
+};
+\end{lstlisting}
+
+\section{Gr"osstes Produkt}
+In dieser Aufgabe soll eine Methode implementiert werden, welche als Parameter einen Array mit Integer Werten
+enth"alt. Aus diesem Array soll nun das gr"osste Produkt gefunden werden, welches mit 3 Elementen aus diesem
+Array erstellt werden kann.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class ArrayUtil {
+public:
+  static int highestProduct(int *values, const int ARRAY_SIZE);
+};
+\end{lstlisting}
+
+\section{Anagramm Check}
+In dieser Aufgabe soll eine Methode implementiert werden, welche als Parameter zwei Strings enth"alt.
+Die Methode liefert den Wert \verb|true|, falls diese beiden Strings Anagramme sind. Anonsten \verb|false|.
+
+\begin{lstlisting}
+class StringUtil {
+public:
+  static bool anagramCheck(string s1, string s2);
+};
+\end{lstlisting}
+
+\end{document}
+

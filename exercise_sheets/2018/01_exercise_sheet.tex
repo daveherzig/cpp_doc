@@ -1,0 +1,111 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[dvips]{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\setlength{\parindent}{0cm}
+
+\title{Aufgabe 1 Programmieren HF-ICT}
+\author{David Herzig}
+\date{August 2015}
+
+% some listings configurations:
+
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++}
+%
+
+\renewcommand{\arraystretch}{2.0}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+Programmieren 3. Semester, Algorithmen und Datenstrukturen\\
+David Herzig
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 1
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{Analyse}
+Welche Laufzeit hat der folgende Code?
+
+\begin{lstlisting}
+void foo(int *array, int size) {
+  int sum = 0;
+  int product = 1;
+  for (int i=0; i<size; i++) {
+    sum += array[i];
+  }
+  for (int i=0; i<size; i++) {
+    product *= array[i];
+  }
+  cout << sum << "," << product << endl;
+}
+\end{lstlisting}
+
+alc
+\section{Array Multiplikation}
+In dieser Aufgabe soll eine Methode implementiert werden, welche als Parameter einen Array enth"alt.
+Das Resultat ist ein Array der gleichen Gr"osse. Jedes Element dieses Arrays beinhaltet die
+Multiplikation aller Elemente (ausser sich selbst) des Input Arrays.
+
+\vspace{3mm}
+
+Beispiel:\\
+Input Array: \verb|{12, 4, 7, 3}|\\
+Output Array: \verb|{4*7*3, 12*7*3, 12*4*3, 12*4*7} = {84, 252, 144, 336}|
+
+\vspace{3mm}
+
+{\bf ACHTUNG}: Der Divisionsoperator darf in dieser Aufgabe NICHT verwendet werden!
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class ArrayUtil {
+public:
+  static long* multiplyArrayValues(const long *values, const int ARRAY_SIZE);
+};
+\end{lstlisting}
+
+\section{String Check}
+In dieser Aufgabe soll eine Methode implementiert werden, welche als Parameter einen String enth"alt.
+Das Resultat ist ein Boolean. \verb|true| falls alle Buchstaben unique sind (alle Buchstaben kommen nur
+einmal vor), sonst \verb|false|.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class StringUtil {
+public:
+  static bool checkUniqueness(string s);
+};
+\end{lstlisting}
+
+\end{document}
+

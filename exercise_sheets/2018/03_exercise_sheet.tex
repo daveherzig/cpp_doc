@@ -1,0 +1,106 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[dvips]{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\setlength{\parindent}{0cm}
+
+\title{Aufgabe 3 Programmieren HF-ICT}
+\author{David Herzig}
+\date{August 2015}
+
+% some listings configurations:
+
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++}
+%
+
+\renewcommand{\arraystretch}{2.0}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+Programmieren 3. Semester, Algorithmen und Datenstrukturen\\
+David Herzig
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 3
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{M"unzkombinationen}
+In dieser Aufgabe soll ein Algorithmus implementiert werden, welcher
+f"ur einen bestimmten Geldbetrag die minimale Anzahl M"unzen berechnet.
+
+\vspace{3mm}
+
+Der Algorithmus erh"alt als Input den Betrag sowie ein Array mit den 
+verf"ugbaren M"unzen.
+
+\begin{lstlisting}
+class CoinCombination {
+public:
+  static void printCoinCombination(
+    double value, // Betrag
+    const double *coins, // Pointer auf Muenzarray
+    const int ARRAY_SIZE); // Groesse des Muenzarray
+};
+\end{lstlisting}
+
+Beispiel:\\
+Betrag: 23 CHF\\
+M"unzen: {0.05, 0.10, 0.20, 0.50, 1, 2, 5}\\
+Resultat: 5, 5, 5, 5, 2, 1 (minimale Anzahl M"unzen) 
+
+\section{Palindrome}
+In dieser Aufgabe soll eine Methode implementiert werden, welche mit Hilfe von Rekursion pr"uft,
+ob eine Zeichenkette ein Palindrome ist.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class StringUtil {
+public:
+  static bool isPalindrome(string input);
+};
+\end{lstlisting}
+
+\section{L"angster gemeinsamer Substring}
+In dieser Aufgabe soll eine Methode implementiert werden, welche von 2 Zeichenketten den l"angsten
+Substring findet, welcher in beiden Zeichenketten vorkommt.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class StringUtil {
+public:
+  static string lcs(string input1, string input2);
+};
+\end{lstlisting}
+
+
+\end{document}
+

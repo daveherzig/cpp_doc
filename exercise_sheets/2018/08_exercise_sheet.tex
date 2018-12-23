@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[dvips]{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\setlength{\parindent}{0cm}
+
+\title{Aufgabe 8 Programmieren HF-ICT}
+\author{David Herzig}
+\date{August 2015}
+
+% some listings configurations:
+
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++}
+%
+
+\renewcommand{\arraystretch}{2.0}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+Programmieren 3. Semester, Algorithmen und Datenstrukturen\\
+David Herzig
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 8
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{Quadrat Finder}
+Gegeben ist eine Matrix der Gr"osse $m \cdot n$. Jeder Feld dieser Matrix ist
+entweder \verb|true| oder \verb|false|. Die Aufgabe besteht darin, herauszufinden,
+ob alle \verb|true| Felder in einem Quadrat sind.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+class Matrix {
+public:
+  bool getCellState(int m, int n);
+  int getNumberOfRows();
+  int getNumberOfColumns();
+};
+
+bool checkMatrix(const Matrix & matrix) {
+  // returns true if all true fields are in a square
+}
+\end{lstlisting}
+
+\section{Zwischensumme}
+Gegeben ist ein Integer Array der Gr"osse N. Weiterhin ist eine Zahl K gegeben.
+Implementieren Sie eine Funktion, welche als Parameter den Array sowie die Zahl K
+bekommt. Diese Methode gibt \verb|true| zur"uck, falls die Zahl K als Summe
+von Elementen aus dem Array gebildet werden kann (jedes Element darf maximal
+einmal verwendet werden). Falls nicht,gibt die Methode \verb|false|
+zur"uck.
+
+\vspace{3mm}
+
+\begin{lstlisting}
+bool subsetsum(int *array, int size, int k) {
+  // your implementation
+}
+\end{lstlisting}
+
+\end{document}
+

@@ -1,0 +1,111 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+\usepackage{times}
+
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+
+\setlength{\parindent}{0cm}
+
+\title{Aufgabe 6 Programmieren HF-ICT}
+\author{David Herzig}
+\date{November 2017}
+
+% some listings configurations:
+
+\lstset{numbers=left,
+        numberstyle=\tiny,
+        keywordstyle=\color{blue}\bfseries\sffamily,
+        identifierstyle=\ttfamily,
+        commentstyle=\em,
+        stringstyle=\ttfamily,
+        extendedchars=true,
+        showstringspaces=false,
+        language=c++}
+%
+
+\renewcommand{\arraystretch}{2.0}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+Programmieren 3. Semester, Algorithmen und Datenstrukturen\\
+David Herzig
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Algorithmen und Datenstrukturen}\\
+Exercise sheet 6
+\end{center}
+
+\vspace{2mm}
+
+\line(1,0){400}
+
+\vspace{5mm}
+
+\section{Graph - All nodes are reachable}
+Gegeben ist ein gerichteter Graph in der Form wie im Unterricht besprochen:
+
+\begin{lstlisting}
+Graph g;
+\end{lstlisting}
+
+Implementieren Sie die folgende Funktion
+
+\begin{lstlisting}
+bool allNodeAreReachable(Graph *g,
+                         int start);
+\end{lstlisting}
+
+Diese Funktion erh"alt als Parameter einen Graphen, die Anzahl Knoten und den
+Start Knoten. Die Funktion liefert \verb|true| falls alle anderen Knoten im Graphen
+von \verb|start| erreichbar sind. Falls ein oder mehrere Knoten nicht erreichbar sind,
+so liefert die Funktion \verb|false|.
+
+\section{Graph - Shortest Reach}
+Gegeben ist ein ungerichteter Graph in der Form wie im Unterricht besprochen:
+
+\begin{lstlisting}
+Graph g;
+\end{lstlisting}
+
+Implementieren Sie die folgende Funktion
+
+\begin{lstlisting}
+int shortestReach(Graph *g,
+                  int start, int end);
+\end{lstlisting}
+
+Diese Funktion liefert die minimale Anzahl Knoten, welche von \verb|start| nach \verb|end|
+passiert werden muss. Falls \verb|start| und \verb|end| gleich sind, liefert die Funktion
+\verb|0|. Falls kein Weg zwischen \verb|start| und \verb|end| existiert, so liefert die
+Funktion den Wert \verb|-1|.
+
+\section{Graph - Get Path}
+Gegeben ist ein gerichteter, gewichteter Graph in der Form wie im Unterricht besprochen:
+
+\begin{lstlisting}
+Graph g;
+\end{lstlisting}
+
+Implementieren Sie die folgende Funktion
+
+\begin{lstlisting}
+vector<int> getPath(Graph *g
+                    int start, int end);
+\end{lstlisting}
+
+Diese Funktion liefert einen Vector, welche alle Knoten (g"unstigster Weg) beinhaltet, welche von 
+\verb|start| nach \verb|end| passiert werden m"ussen.
+
+\end{document}
+
