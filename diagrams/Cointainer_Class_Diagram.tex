@@ -1,0 +1,55 @@
+\documentclass[a4paper,10pt]{article}
+\topmargin-1cm
+\addtolength{\textheight}{2.5cm}
+\addtolength{\textwidth}{2cm}
+
+\usepackage{verbatim}
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{struktex}
+
+\setlength{\parindent}{0cm}
+
+\title{Latex Template}
+\author{Patrik S"utterlin}
+\date{WS2018}
+
+\begin{document}
+
+HF-ICT - H"ohere Fachschule f"ur Informations- und Kommunikationstechnologie\\
+CH 4132 Muttenz\\
+Patrik S"utterlin
+
+\vspace{2mm}
+
+\begin{center}
+{\Large \bf Vorkurs Informatik}\\
+Container (List, Ve
+\end{center}
+
+\vspace{2mm}
+\line(1,0){400}
+\vspace{5mm}
+
+
+\begin{center}
+\begin{struktogramm}(125,42)[Loesung 6-1 Variante 1: Schaltjahrbestimmung anhand einer Jahreszahl]
+  \ifthenelse{4}{4}{Jahreszahl ist restfrei teilbar durch 100}{ja}{nein}
+    \ifthenelse{2}{2}{Jahreszahl ist restfrei teilbar durch 400}{ja}{nein}
+      \assign{Jahr ist ein Schaltjahr}
+    \change
+      \assign{Jahr ist kein Schaltjahr}
+    \ifend
+  \change
+    \ifthenelse{2}{2}{Jahreszahl ist restfrei teilbar durch 4}{ja}{nein}
+      \assign{Jahr ist ein Schaltjahr}
+    \change
+      \assign{Jahr ist kein Schaltjahr}
+    \ifend
+  \ifend
+\end{struktogramm}
+\end{center}
+\line(1,0){400}
+\vspace{4mm}
+
+\end{document}

@@ -7,12 +7,13 @@
 \item Company History: Trolltech (1994-2008), Nokia (2008-2012), Digia (2012-2014), The QT Company (2014-)
 \item QT is a cross-platform application and UI framework
 \item QT provides intuitive C++ class libraries
-\item Current Version: 5.10.0 (7-DEC-2017)
+\item Current Version: 5.12.0 (06-DEC-2018)
 {\tiny
 \begin{itemize}
 \item 3D Graphics with OpenGL
 \item Multithreading
 \item Network Connectivity
+\item Location and Positioning
 \item ...
 \end{itemize}
 }
@@ -503,7 +504,8 @@ The QPainter objects supports many method to draw specific geometric figures:
 
 \begin{frame}[fragile]
 \frametitle{Exercise - Moiree}
-Create an application which draws the following picture:
+Create an application which draws the following picture:\\
+\vspace{3mm}
 \includegraphics[width=190pt]{img/moiree.png}
 \end{frame}
 
@@ -522,7 +524,35 @@ be a triangle stretched over the widget.
 \item o to step 3
 \end{enumerate}
 }
-Draw about 100000 points. In addition colors could also be used at step 3. In case of point A (green), B (blue) and C (red).
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercise - Mandelbrot Set}
+Create an application which draws the following picture:\\
+\vspace{3mm}
+\includegraphics[width=220pt]{img/Mandelbrot.png}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercise - Mandelbrot Set}
+Create a widget named `'Mandelbrot'' that implements the following algorithm:
+{\small
+\begin{enumerate}
+\item Set the minimum Size of the Widget to x=800, y=480
+\item Overload the paintEvent method and iterate over all pixels of the widget. 
+\item Implement a method calcMandelbrotPoint that accepts the x-coordinate (int Px) and y-coordinate (int Py) and a recusrsion limit (int maxIterations=200)
+	\begin{itemize}
+	\item Scale the coordinate Px linear to the numeric range from -2.5 to 1.0 (Save the scaled value in x1)
+	\item Scale the coordinate Py linear to the numeric range from -1.0 to 1.0 (Save the scaled value in y1)
+	\item Initialize double x0 = 0.0 and y0 = 0.0
+	\item Loop as long ${x_0}^2 \cdot {y_0}^2 < 4.0$ and as long the iteration counter is not exceeding maxIterations.
+	\item Calculate Real Number $x_0 = {x_0}^2 - {y_0}^2 + x_1$ (only replace the x0 variable value after the next operation)
+	\item Calculate Imaginary Number $y_0 = 2 \cdot  x_0 \cdot y_0  \cdot + y_1$ 
+	\item Increase Iteration counter on each loop - return the amount of iterations performed
+	\end{itemize}
+\item Evaluate if the returned Iteration Counter of calcMandelbrotPoint - if the counter is greater than 100 set a black point. Optionally define a gradient palette of various colors for a range 0..n.
+\end{enumerate}
+}
 \end{frame}
 
 \subsection{Mouse Events}
