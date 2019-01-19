@@ -161,28 +161,6 @@ Can you display two widgets in one window?\\
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{QDebug vs cout}
-\begin{itemize}
-\item qDebug()
-\item qInfo()
-\item qWarning()
-\item qCritical()
-\item qFatal()
-\end{itemize}
-
-\begin{lstlisting}
-qDebug() << "some debug output...";
-\end{lstlisting}
-
-Switch off debug output:
-\begin{lstlisting}
-qmake -project DEFINES+=QT_NO_DEBUG_OUTPUT
-\end{lstlisting}
-
-\end{frame}
-
-
 \subsection{Layout Manager}
 \frame
 {
@@ -249,6 +227,37 @@ No layout manager\\
 \lstinputlisting{code/qt/null/mywidget.cpp}
 }
 }
+
+\begin{frame}[fragile]
+\frametitle{Credit Card Checker}
+\begin{exercise}
+Create an application with QT which creates the following gui:
+\includegraphics[width=250pt]{img/creditcard_gui.png}
+\end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{QDebug vs cout}
+\begin{itemize}
+\item qDebug()
+\item qInfo()
+\item qWarning()
+\item qCritical()
+\item qFatal()
+\end{itemize}
+
+\begin{lstlisting}
+qDebug() << "some debug output...";
+\end{lstlisting}
+
+Switch off debug output:
+\begin{lstlisting}
+qmake -project DEFINES+=QT_NO_DEBUG_OUTPUT
+\end{lstlisting}
+
+\end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{Modular Programming}
@@ -475,15 +484,6 @@ some additional important dialog functionality.
 \item Result - A dialog normally provides a result value.
 (e.g. Ok, Cancel Button Clicked)
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Exercise - Modular Programming}
-	\begin{exercise}
-  Implement a gui to validate a credit card number (only the number).\\
-  \includegraphics[width=140pt]{img/creditcard.png}\\
-  The Luhn formula can be used to validate the number.
-	\end{exercise}
 \end{frame}
 
 
