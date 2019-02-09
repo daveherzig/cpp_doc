@@ -470,6 +470,9 @@ int result = QMessageBox::warning( // warning, critical, ...
   "TEXT",
   QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel
 );
+if (result == QMessageBox::Save) {
+  // do something
+}
 \end{lstlisting}
 }
 \end{frame}
@@ -484,6 +487,61 @@ some additional important dialog functionality.
 \item Result - A dialog normally provides a result value.
 (e.g. Ok, Cancel Button Clicked)
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dialogs}
+File dialogs could be implemented with the \verb|QFileDialog| class.
+\begin{lstlisting}
+QString filename =
+  QFileDialog::getOpenFileName(PARENT_WIDGET);
+
+// if the filename is empty,
+// the user clicked cancel!
+
+if (!filename.isEmpty()) {
+  // do something
+}
+\end{lstlisting}
+\end{frame}
+
+\subsection{Menu}
+\begin{frame}[fragile]
+\frametitle{Menu}
+To create a menu within the application, the following 3 classes are
+involved:
+\begin{itemize}
+\item QMenuBar
+\item QMenu
+\item QAction
+\end{itemize}
+\includegraphics[width=200pt]{img/menus-example.png}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Menu}
+A object of the class \verb|QMenuBar| will be provided from a \verb|QMainWindow|.
+{\tiny
+\begin{lstlisting}
+class MainWindow : public QMainWindow {
+public:
+  MainWindow();
+};
+
+MainWindow::MainWindow() {
+  QMenuBar *menuBar = this->menuBar();
+  
+  QMenu *fileMenu = new QMenu(tr("&File"));
+  QAction *exitAction = fileMenu->addAction("Exit");
+
+  QObject::connect(
+    exitAction, SIGNAL(triggered()),
+    QApplication::instance(), SLOT(quit()));
+
+  menuBar->addMenu(fileMenu);
+}
+\end{lstlisting}
+}
 \end{frame}
 
 
