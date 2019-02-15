@@ -544,6 +544,36 @@ MainWindow::MainWindow() {
 }
 \end{frame}
 
+\subsection{Mouse Events}
+\begin{frame}[fragile]
+\frametitle{Mouse Events}
+Mouse move and mouse click events can be tracked on a widget by
+overwritting one (or more) of the following methods:
+
+\begin{itemize}
+\item \verb|void mouseMoveEvent(QMouseEvent *event)|\\
+Do not forget to switch on mouse tracking (\verb|setMouseTracking(true)|) to handle these events.
+\item \verb|void mousePressEvent(QMouseEvent *event)|
+\item \verb|void mouseDoubleClickEvent(QMouseEvent *event)|
+\item \verb|void mouseReleaseEvent(QMouseEvent *event)|
+\end{itemize}
+
+\end{frame}
+
+\subsection{Keyboard Events}
+\begin{frame}[fragile]
+\frametitle{Mouse Events}
+Keyboard events can be tracked on a widget by
+overwritting one (or more) of the following methods:
+
+\begin{itemize}
+\item \verb|void keyPressEvent(QKeyEvent *event)|
+\item \verb|void keyReleaseEvent(QKeyEvent *event)|
+\end{itemize}
+
+\end{frame}
+
+
 
 \subsection{Painting}
 \begin{frame}[fragile]
@@ -611,22 +641,6 @@ Create a widget named `'Mandelbrot'' that implements the following algorithm:
 \item Evaluate if the returned Iteration Counter of calcMandelbrotPoint is greater than 100. If yes set a black point. Optionally define a gradient palette of various colors for a specific range 0..n.
 \end{enumerate}
 }
-\end{frame}
-
-\subsection{Mouse Events}
-\begin{frame}[fragile]
-\frametitle{Mouse Events}
-Mouse move and and mouse click events can be tracked on a widget by
-overwritting one (or both) of the following methods:
-
-\begin{itemize}
-\item \verb|mouseMoveEvent(QMouseEvent *event)|\\
-Do not forget to switch on mouse tracking (\verb|setMouseTracking(true)|) to handle these events.
-\item \verb|mousePressEvent(QMouseEvent *event)|
-\item \verb|mouseDoubleClickEvent(QMouseEvent *event)|
-\item \verb|mouseReleaseEvent(QMouseEvent *event)|
-\end{itemize}
-
 \end{frame}
 
 \subsection{Threads}
