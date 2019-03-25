@@ -645,16 +645,16 @@ Create an application which draws the following picture:\\
 Create a widget named `'Mandelbrot'' that implements the following algorithm:
 {\small
 \begin{enumerate}
-\item Set the minimum Size of the Widget to x=800, y=480
+\item Set the minimum Size of the Widget to x=800, y=460
 \item Overload the paintEvent method and iterate over all pixels of the widget. 
-\item Implement a method calcMandelbrotPoint that accepts the x-coordinate (int Px) and y-coordinate (int Py) and a recusrsion limit (int maxIterations=200)
+\item Implement a method calcMandelbrotPoint that accepts the x-coordinate (int x) and y-coordinate (int y) and a recusrsion limit (int maxIterations=200)
 	\begin{itemize}
-	\item Scale the coordinate Px linear to the numeric range from -2.5 to 1.0 (Save the scaled value in x1)
-	\item Scale the coordinate Py linear to the numeric range from -1.0 to 1.0 (Save the scaled value in y1)
+	\item Scale the coordinate x linear to the numeric range from -2.5 to 1.0 (Save the scaled value in x1)
+	\item Scale the coordinate y linear to the numeric range from -1.0 to 1.0 (Save the scaled value in y1)
 	\item Initialize double x0 = 0.0 and y0 = 0.0
-	\item Loop as long ${x_0}^2 \cdot {y_0}^2 < 4.0$ and as long the iteration counter is not exceeding maxIterations.
+	\item Loop as long $({x_0}^2 + {y_0}^2) < 4.0$ and as long the iteration counter is not exceeding maxIterations.
 	\item Calculate Real Number $x_0 = {x_0}^2 - {y_0}^2 + x_1$ (only replace the x0 variable value after the next operation)
-	\item Calculate Imaginary Number $y_0 = 2 \cdot  x_0 \cdot y_0  \cdot + y_1$ 
+	\item Calculate Imaginary Number $y_0 = 2 \cdot  x_0 \cdot y_0 + y_1$ 
 	\item Increase Iteration counter on each loop - return the amount of iterations performed
 	\end{itemize}
 \item Evaluate if the returned Iteration Counter of calcMandelbrotPoint is greater than 100. If yes set a black point. Optionally define a gradient palette of various colors for a specific range 0..n.
